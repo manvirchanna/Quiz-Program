@@ -1,0 +1,392 @@
+/*======================================================================================*/
+//               ****************** ONLINE QUIZ CONTEST **************************
+/*======================================================================================*/
+				
+  #include<fstream.h>
+  #include<dos.h>
+  #include<ctype.h>
+  #include<conio.h>
+  #include<string.h>
+  #include<stdio.h>
+  #include<stdlib.h>
+
+      class registeration
+  {
+	char cadname[20],city[20];
+	int rollno,age;
+	long contact_no;
+      public:
+
+	void store()
+     {
+	 cout<<"\n\n\t Enter your name: ";
+	 gets(cadname);
+	 cout<<"\n\t Enter your age: ";
+	 cin>>age;
+	 cout<<"\n\t Enter your city: ";
+	 gets(city);
+	 cout<<"\n\t Enter your roll number: ";
+	 cin>>rollno;
+	 cout<<"\n\t Enter your contact number: ";
+	 cin>>contact_no;
+    }
+
+       void display()
+    {
+	 delay(800);
+	 cout<<"\n\n\t Your registered name: "<<cadname;
+	 delay(800);
+	 cout<<"\n\t Your registered age: "<<age;
+	 delay(800);
+	 cout<<"\n\t Your registered roll number: "<<rollno;
+	 delay(800);
+	 cout<<"\n\t Your registered contact number: "<<contact_no;
+	 delay(800);
+	 cout<<"\n\t Your registered city: "<<city;
+	 delay(800);
+    }
+
+  };
+
+      class quiz
+  {
+	int sno;
+	char ans,ans1,question[50],op1[15],op2[15],op3[15],op4[15];
+      public:
+
+	void enterquest()
+       {
+	 cout<<"\n\tEnter the serial number :";
+	 cin>>sno;
+	 cout<<"\n\tEnter the question :"<<endl;
+	 gets(question);
+	 cout<<endl<<"\n\tEnter the option 1 :";
+	 gets(op1);
+	 cout<<endl<<"\n\tEnter the option 2 :";
+	 gets(op2);
+	 cout<<endl<<"\n\tEnter the option 3 :";
+	 gets(op3);
+	 cout<<endl<<"\n\tEnter the option 4 :";
+	 gets(op4);
+	 cout<<endl<<"\n\tEnter the correct answer :";
+	 cin>>ans1;
+       }
+
+
+       char start_quiz(char n)
+       {
+	 clrscr();
+	 delay(1000);
+	 cout<<"\n\nQ)";
+	 cout<<question;
+	 cout<<"\n\n (A) "<<op1<<"\n (B) "<<op2<<"\n (C) "<<op3<<"\n (D) "<<op4;
+	 cout<<"\n============================================================================";
+	 delay(500);
+	 cout<<"\n\nYour Answer: ";
+	 cin>>ans;
+	 ans=toupper(ans);
+	 return ans;
+       }
+
+      char check_answer(char D)
+       {
+	 int found=0;
+	    if(ans1==D)
+	  {
+	       delay(500);
+	       cout<<"\n\n\t\t\t\t CORRECT ANSWER";
+	       getch();
+	       found=1;
+	  }
+
+	     else if(ans1!=D)
+	  {
+	       delay(500);
+	       cout<<"\n\n\n\t\t\t            !!! OPPS !!!";
+	       cout<<"\n\n\t\t\t  YOU HAVE ENTERED AN INCORRECT ANSWER";
+	       getch();
+	  }
+
+	     else
+	       cout<<"invalid_answer";
+	       return found;
+       }
+
+      int return_sno()
+       {
+	     return sno;
+       }
+
+      int ret_ans()
+       {
+	     return ans1;
+       }
+  };
+
+
+	   void main()
+      {
+	   fstream f;
+	   registeration ob;
+	   quiz q;
+	   int a[10],rans=0,wans=0;
+	   long money=0;
+char c;
+do
+{
+	   clrscr();
+	   cout<<"\n\n\n\n\t#####*****GURU TEGH BAHADUR 3RD CENTENARY PUBLIC SCHOOL*****#####";
+	   delay(1000);
+	   cout<<"\n\n\n\t             #####*****ONLINE QUIZ CONTEST*****#####  ";
+	   delay(1000);
+	   int ch;
+	   clrscr();
+	   cout<<"\n\t*****************************************************************";
+	   cout<<"\n\t                            M E N U ";
+	   cout<<"\n\t*****************************************************************";
+	   delay(500);
+	   cout<<"\n\n\t\t\t 1.START QUIZ";
+           cout<<"\n\n\t\t\t 2.ADMIN";
+	   cout<<"\n\n\t\t\t 3.QUIT";
+	   delay(1000);
+	   cout<<"\n\n\n\t\t\t ENTER YOUR CHOICE: ";
+	   cin>>ch;
+
+	  switch(ch)
+       {
+	  case 1:
+	     clrscr();
+	     char choice;
+	     delay(500);
+	     cout<<"\n\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+	     cout<<"\n\t                     I N S T R U C T I O N S ";
+	     cout<<"\n\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+	     cout<<"\n\n* THERE ARE 10 QUESTIONS IN THIS QUIZ.";
+	     delay(1000);
+	     cout<<"\n* EACH QUESTION IS OF RUPEES 5000/- ";
+	     delay(1000);
+	     cout<<"\n* YOU HAVE NO ANY LIFE LINE.";
+	     delay(1000);
+	     cout<<"\n* YOU CAN'T QUIT THE COMPETITION IN BETWEEN.";
+	     delay(1000);
+	     cout<<"\n* WITH EVERY WRONG ANSWER YOUR WINNING PRIZE MONEY WILL AUTOMATICALLY DEDUCTED    WITH Rs1000/-";
+	     delay(1000);
+	     cout<<"\n* SO, BEST OF LUCK !!!.......";
+	     delay(1000);
+	     cout<<"\n\n\t\t\t DO YOU WANT TO PLAY & WIN ? (Y/N)";
+	     cout<<"\n\n\t\t\t Enter your choice: ";
+	     cin>>choice;
+
+	       if(choice=='y'|| choice=='Y')
+	    {
+		   clrscr();
+		     cout<<"\n\t\t\tEnter your details: ";
+		     f.open("emp.dat",ios::app);
+		     ob.store();
+		     f.write((char*)&ob,sizeof(ob));
+		     f.close();
+		     clrscr();
+		     cout<<"\n\n\n\n\n\n\t\t!!!!!!!!!! GET READY FOR THE QUIZE !!!!!!!!!!";
+		     delay(2000);
+		     clrscr();
+		     f.open("QUIZ_QUESTION.DAT",ios::binary|ios::in|ios::out);
+			    for(int y=0;y<10;y++)
+                	     randomize();
+		       int i=0,j,qno,z=0;
+			 while(i<10)
+		 {
+			   int found=0;
+			   qno=random(10)+1;
+
+			    for(j=0;j<=i;j++)
+		     {
+			      if(a[j]==qno)
+			  {
+				found=1;
+				break;
+			  }
+		     }
+
+			      if(found==1)
+			      continue;
+			      a[i]=qno;
+			      i++;
+			      f.seekg(0);
+
+			      while(!f.eof())
+			 {
+			      int e,d;
+			      f.read((char*)&q,sizeof(q));
+			      if(f.eof())
+			      break;
+			       if(q.return_sno()==qno)
+			   {
+				d=q.start_quiz(z+1);
+				e=q.check_answer(d);
+				if(e==1)
+			     {
+				   money+=5000;
+				   rans++;
+			     }
+				else
+			     {
+				   money-=1000;
+				   wans++;
+				   break;
+			     }
+
+			   }
+			 }
+				f.clear();
+				z++;
+	   }
+	   f.close();
+	 }
+	      else if(choice=='n'||choice=='N')
+	  {
+		   clrscr();
+		   cout<<"\n\n\n\n\n\n\n\t\t\t **********Thanks For Coming**********\n";
+		   delay(1500);
+		   getch();
+		   exit(0);
+	  }
+	      else
+	  {
+		   cout<<"INVALID ANSWER";
+	  }
+		   clrscr();
+		   delay(1000);
+		   cout<<"\n\n\n\n\n\n\n\n\n\n\t***************************************************************";
+		   cout<<"\n\t\t\t\t  GAME OVER ";
+		   cout<<"\n\t***************************************************************";
+		   getch();
+		   clrscr();
+		   cout<<"\n\n\t\t\tYOUR PRE-REGISTERED DETAILS:";
+		   delay(1000);
+		   ob.display();
+		   cout<<"\n\n\n\n\n\t\t\t PRESS ENTER TO KNOW ABOUT YOUR SCORE-----------";
+		   getch();
+		   clrscr();
+		   cout<<"\n\n\n\t\t\tYOUR SCORECARD:";
+		   delay(1000);
+		   cout<<"\n\n\n\n\n\t\t\tNumber of questions attempt correctly: "<<rans;
+		   delay(1000);
+		   cout<<"\n\n\t\t\tNumber of questions attempt wrong: "<<wans;
+		   delay(1000);
+		   cout<<"\n\n\n\n\n\t***************************************************************";
+		   cout<<"\n\t\t\tGRAND PRIZE MONEY WIN : Rs. "<<money<<"/-";
+		   cout<<"\n\t***************************************************************";
+		   getch();
+		   clrscr();
+		   cout<<"\n\n\n\n\n\n\n\n\n\n\t\t\t*********** THANKS FOR PLAYING ********** ";
+		   getch();
+		   break;
+
+case 2:
+	clrscr();
+	int p,ch=0;
+	char pass[6],a;
+	do
+	{
+		   cout<<"\n\n\n\n\n\t\tEnter The Password: ";
+		   for(int i=0;i<6;i++)
+		   {
+			 a=getch();
+			      p=(char)a;
+			      pass[i]=p;
+			      cout<<"*";
+		 }
+	 if (strcmpi((char*)pass,"manvir")==0)
+	 {
+
+
+		cout<<"\n\n\n\n\n\t\tHELLO MANVIR SINGH CHANNA\n";
+	       ch=4;
+	       int x;
+	       cout<<"\n\n\n\n\n\t\t1.)DO YOU WANT TO ADD NEW QUESTIONS IN THE QUIZE?\n";
+	       cout<<"\n\t\t2.)DO YOU WANT TO EXIT?\n";
+	       cin>>x;
+		switch(x)
+		{
+			case 1:
+			{
+			       clrscr();
+			       int n;
+			       cout<<"\n\n\n\n\t\tENTER HOW MANY QUESTIONS DO YOU WANT TO ADD: ";
+			       cin>>n;
+				f.open("QUIZ_QUESTION.DAT",ios::binary|ios::app);
+				for(int y=0;y<n;y++)
+			       {
+					clrscr();
+					q.enterquest();
+					f.write((char*)&q,sizeof(q));
+			       }
+			  f.close();
+		       }
+		    cout<<"\n\n\n\t\t\t**********THANKS MANVIR**********";
+		    break;
+
+			case 2:
+				 cout<<"\n\n\n\t\t\t**********THANKS FOR COMING**********";
+				  break;
+
+			default:
+			      cout<<"\n\n\n\t\t\t***************INVALID ANSWER***************";
+		}
+	}
+else
+{
+cout<<"\n\n\n      !!!!!OPPS!!!!!";
+cout<<"\n\nYOU HAVE ENTERED A WRONG PASSWORD";
+getch();
+exit(0);
+}
+}while(ch<3);
+	       getch();
+		break;
+case 3:
+	    cout<<"\n\n\t\t\t********** THANKS FOR COMING **********";
+	    getch();
+	    exit(0);
+	    break;
+
+	 default:
+	    clrscr();
+	    cout<<"\n\n\t\t\t !!!!!!!!!!!! WRONG CHOICE !!!!!!!!!!!";
+	    cout<<"\n\n\t\t\t ********* THANKS FOR COMING **********";
+      }
+clrscr();
+cout<<"\n\n\n\n\n\n\n\t\t\tDo you want to play again? (Y/N)\n\n\t\t\t";
+cout<<"\n\n\n\t\t\tENTER YOUR CHOICE: ";
+cin>>c;
+  }while(c=='y'|| c=='Y');
+
+getch();
+
+  }
+
+
+ // CODING IS OVER THANKS TO YOU AND HOPE YOU LIKE MY PROJECT.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
