@@ -51,22 +51,22 @@
       class quiz
   {
 	int sno;
-	char ans,ans1,question[50],op1[15],op2[15],op3[15],op4[15];
+	char ans,ans1,question[60],op1[15],op2[15],op3[15],op4[15];
       public:
 
 	void enterquest()
        {
 	 cout<<"\n\tEnter the serial number :";
 	 cin>>sno;
-	 cout<<"\n\tEnter the question :"<<endl;
+	 cout<<"\n\tEnter the Question :"<<endl;
 	 gets(question);
-	 cout<<endl<<"\n\tEnter the option 1 :";
+	 cout<<endl<<"\n\tEnter the Option 1 :";
 	 gets(op1);
-	 cout<<endl<<"\n\tEnter the option 2 :";
+	 cout<<endl<<"\n\tEnter the Option 2 :";
 	 gets(op2);
-	 cout<<endl<<"\n\tEnter the option 3 :";
+	 cout<<endl<<"\n\tEnter the Option 3 :";
 	 gets(op3);
-	 cout<<endl<<"\n\tEnter the option 4 :";
+	 cout<<endl<<"\n\tEnter the Option 4 :";
 	 gets(op4);
 	 cout<<endl<<"\n\tEnter the correct answer :";
 	 cin>>ans1;
@@ -76,7 +76,7 @@
        char start_quiz(char n)
        {
 	 clrscr();
-	 delay(1000);
+	 delay(1200);
 	 cout<<"\n\nQ)";
 	 cout<<question;
 	 cout<<"\n\n (A)   "<<op1<<"\n (B) "<<op2<<"\n (C) "<<op3<<"\n (D) "<<op4;
@@ -103,7 +103,7 @@
 	  {
 	       delay(500);
 	       cout<<"\n\n\n\t\t\t            !!! OPPS !!!";
-	       cout<<"\n\n\t\t\t  YOU HAVE ENTERED AN INCORRECT ANSWER";
+	       cout<<"\n\n\t\t\t   YOU HAVE ENTERED AN INCORRECT ANSWER";
 	       getch();
 	  }
 
@@ -131,9 +131,8 @@
 	   quiz q;
 	   int a[10],rans=0,wans=0;
 	   long money=0;
-char c;
-do
-{
+           char c;
+           do{
 	   clrscr();
 	   cout<<"\n\n\n\n\t#####*****GURU TEGH BAHADUR 3RD CENTENARY PUBLIC SCHOOL*****#####";
 	   delay(1000);
